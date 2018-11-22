@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "async": "latest",
-    "grunt": "latest"
+    "grunt": "latest",
+    "underscore": "latest"
   }
 }
