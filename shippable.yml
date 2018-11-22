@@ -9,6 +9,7 @@ env:
 build:
   ci:
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+    - npm install
     - npm version "v1.0.$BUILD_NUMBER"
     - npm publish --access=public
   on_success:
