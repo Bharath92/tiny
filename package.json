@@ -1,4 +1,7 @@
 {
   "name": "@bharath92/tiny",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "dependencies": {
+    "async": "latest"
+  }
 }
