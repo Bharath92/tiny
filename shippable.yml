@@ -1,0 +1,18 @@
+language: node_js
+
+node_js:
+  - 10.13.0
+
+env:
+  - secure: Miwh5bAZXqwBwMcxfWcl0yH3HPInLjO9LPIvOMuZ1957rhotvL5V35u/FBANOvW5vSS/bMs+1vyfAph242nGw8tQFsnyHu2Jo3SmsjVZCjNUucDZlrAddDgPlIDsOW7MygsXBch7bbDeZ7QjWmbutl3W1mOHP6FtmuuchqAZyG7wBc6GLL5nfv9ooqbIsYf+dqo6bHOOGHnb5hK+sqCM4P6X1e68yLu7v/q2iYJGyBjDDi6Y0b4JODrGIm5VfTSReTV3fEjIDC6dt7kuekSeJQ/K1iLccoZgpyxBV3nhSITjXG+akFHnimFa2bNxHEZmOFV6qNJ6pv7Z7/vyGq9Abw==
+
+build:
+  ci:
+    - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+    - npm version $BUILD_NUMBER
+    - npm publish --access=public
+  on_success:
+    - |
+      curl -X POST -H "Authorization: apiToken $API_TOKEN" -H "Content-Type: application/json" -d "{'branchName': 'node_js', "projectId": "$PROJECT_ID"}" https://api.shippable.com/projects/$PROJECT_ID/newBuild
+    - |
+      curl -X POST -H "Authorization: apiToken $API_TOKEN" -H "Content-Type: application/json" -d "{'branchName': 'node_js_test', "projectId": "$PROJECT_ID"}" https://api.shippable.com/projects/$PROJECT_ID/newBuild
