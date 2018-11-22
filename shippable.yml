@@ -13,6 +13,6 @@ build:
     - npm publish --access=public
   on_success:
     - |
-      curl -X POST -H "Authorization: $API_TOKEN" -H "Content-Type: application/json" https://rcapi.shippable.com/projects/$PROJECT_ID/newBuild
-    #- |
-    #  curl -X POST -H "Authorization: $API_TOKEN" -H "Content-Type: application/json" -d "{'branchName': 'node_js_test', "projectId": "$PROJECT_ID"}" https://rcapi.shippable.com/projects/$PROJECT_ID/newBuild
+      curl -X POST -H "Authorization: $API_TOKEN" -H "Content-Type: application/json" -d "{\"branchName\": \"node_js_test\"}" https://rcapi.shippable.com/projects/$PROJECT_ID/newBuild
+    - |
+      curl -X POST -H "Authorization: $API_TOKEN" -H "Content-Type: application/json" -d "{\"branchName\": \"node_js\"}" https://rcapi.shippable.com/projects/$PROJECT_ID/newBuild
